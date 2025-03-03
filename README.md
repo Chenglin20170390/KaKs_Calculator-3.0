@@ -8,7 +8,7 @@
 ## Building KaKs_Calculator-3.0
 ```
 git clone https://github.com/Chenglin20170390/KaKs_Calculator-3.0.git
-cd bin;make
+cd KaKs_Calculator-3.0/bin;make
 ```
 
 ## Run KaKs_Calculator-3.0
@@ -24,7 +24,7 @@ cd bin;make
 
 ## Example
 ```
-KnKs -i example/coding.axt -o test.kaks
+./bin/KaKs -i examples/coding.axt -o test.kaks
 ```
 
 # References
