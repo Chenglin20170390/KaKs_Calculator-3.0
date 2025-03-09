@@ -28,18 +28,20 @@ cd KaKs_Calculator-3.0/bin;make
 ```
 
 ## Tutorial from the fasta file 
+###  input cds and pep sequence 
 - mafft alignment 
 ```
-mafft --auto  test.cds.fa   >  test.cds.mafft.fa
+sample=ID
+mafft --auto  test.pep.fa   >  $sample.pep.mafft.fa
 ```
-- convert alignment to axt format
+- check alignment from pep and convert alignment to axt format
 ```
-clustalw2 -INFILE=test.cds.mafft.fa -OUTPUT=PHYLIP -CONVERT -OUTFILE=test.cds.mafft.phy
-AXTConvertor test.cds.mafft.phy test.cds.mafft.aux.fa
+pal2nal.pl -nogap -nomismatch $sample.pep.mafft.fa  cds.list.$sample.fa  -output clustal > cds.$sample.aln.clustal.fa
+AXTConvertor cds.$sample.aln.clustal.fa cds.$sample.aln.clustal.aux
 ```
 - Ka/Ks analysis
 ```
-KaKs -i test.cds.mafft.aux.fa -o  test.cds.mafft.aux.kaks.txt
+KaKs -i cds.$sample.aln.clustal.aux -o cds.$sample.aln.clustal.aux.kaka.txt
 
 ##format to R
 awk '{print $1,$5}'  test.cds.mafft.aux.kaks.txt | sed 's/&/-/g' |sed '1d'|sed '1iSample\tGene' > KaKs.txt
