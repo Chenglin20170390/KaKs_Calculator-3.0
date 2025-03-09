@@ -34,7 +34,7 @@ cd KaKs_Calculator-3.0/bin;make
 sample=ID
 mafft --auto  test.pep.fa   >  $sample.pep.mafft.fa
 ```
-- check alignment from pep and convert alignment to axt format
+- check alignment from pep and convert alignment to axt format (https://github.com/liaochenlanruo/PAL2NAL/blob/master/pal2nal.pl)
 ```
 pal2nal.pl -nogap -nomismatch $sample.pep.mafft.fa  cds.list.$sample.fa  -output clustal > cds.$sample.aln.clustal.fa
 AXTConvertor cds.$sample.aln.clustal.fa cds.$sample.aln.clustal.aux
