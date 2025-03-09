@@ -44,19 +44,14 @@ AXTConvertor cds.$sample.aln.clustal.fa cds.$sample.aln.clustal.aux
 KaKs -i cds.$sample.aln.clustal.aux -o cds.$sample.aln.clustal.aux.kaka.txt
 
 ##format to R
-awk '{print $1,$5}'  test.cds.mafft.aux.kaks.txt | sed 's/&/-/g' |sed '1d'|sed '1iSample\tGene' > KaKs.txt
+python 22.1.kaks.matrix.py cds.$sample.aln.clustal.aux.kaka.txt $sample.kaka.txt
 ```
 ## R code (example of repeat genes)
 ```
 library(ggplot2)
 library(pheatmap)
 
-dat <-read.table('KaKs.txt',header=T)  ## read input file
-dat$Gene[dat$Gene > 5] <- 0   ## Filtering KaKs that large than 5
-
-rownames(dat) <- dat$Sample  ##rename row
-dat<-dat[,rep(2,8)]  ##repeat 8 times for the interest gene (example)
-head(dat)  ## check data format
+dat <-read.table('$sample.kaks.txt',header=T)  ## read input file
 
 ### heatmap figure
 p<-pheatmap(dat, color = colorRampPalette(c( "white","blue"))(10),
